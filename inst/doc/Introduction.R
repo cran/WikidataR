@@ -14,6 +14,13 @@
 #  rand_prop <- get_random_property()
 
 ## ---- eval=FALSE---------------------------------------------------------
+#  #Retrieve 42 random items
+#  rand_item <- get_random_item(limit = 42)
+#  
+#  #Retrieve 42 random properties
+#  rand_prop <- get_random_property(limit = 42)
+
+## ---- eval=FALSE---------------------------------------------------------
 #  #Find item - find defaults to "en" as a language.
 #  aarons <- find_item("Aaron Halfaker")
 #  
@@ -25,5 +32,5 @@
 #  all_aarons <- find_item("Aaron Halfaker")
 #  
 #  #Grab the ID code for the first entry and retrieve the associated item data.
-#  first_aaron <- get_item(aall_aarons[[1]]$id)
+#  first_aaron <- get_item(all_aarons[[1]]$id)
 
