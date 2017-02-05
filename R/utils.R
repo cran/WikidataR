@@ -22,17 +22,34 @@ wd_rand_query <- function(ns, limit, ...){
 #Generic input checker. Needs additional stuff for property-based querying
 #because namespaces are weird, yo.
 check_input <- function(input, substitution){
-  if(grepl("^\\d+$",input)){
-    input <- paste0(substitution,input)
+  in_fit <- grepl("^\\d+$",input)
+  if(any(in_fit)){
+    input[in_fit] <- paste0(substitution, input[in_fit])
   }
   return(input)
 }
 
 #Generic, direct access to Wikidata's search functionality.
 searcher <- function(search_term, language, limit, type, ...){
-  url <- paste0("wikidata.org/w/api.php?action=wbsearchentities&format=json&type=",type)
-  url <- paste0(url, "&language=", language, "&limit=", limit, "&search=", search_term)
-  result <- WikipediR::query(url = url, out_class = "list", clean_response = FALSE, ...)
+  result <- WikipediR::query(url = "https://www.wikidata.org/w/api.php", out_class = "list", clean_response = FALSE,
+                             query_param = list(
+                               action   = "wbsearchentities", 
+                               type     = type,
+                               language = language,
+                               limit    = limit,
+                               search   = search_term
+                             ),
+                             ...)
   result <- result$search
   return(result)
 }
+
+sparql_query <- function(params, ...){
+  result <- httr::GET("https://query.wikidata.org/bigdata/namespace/wdq/sparql",
+                      query = list(query = params),
+                      httr::user_agent("WikidataR - https://github.com/Ironholds/WikidataR"),
+                      ...)
+  httr::stop_for_status(result)
+  return(httr::content(result, as = "parsed", type = "application/json"))
+}
+

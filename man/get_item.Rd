@@ -3,6 +3,7 @@
 \name{get_item}
 \alias{get_item}
 \alias{get_property}
+\alias{get_property}
 \title{Retrieve specific Wikidata items or properties}
 \usage{
 get_item(id, ...)
@@ -38,4 +39,3 @@ or \code{\link{find_item}} for using search functionality to pull out
 item or property IDs where the descriptions or aliases match a particular
 search term.
 }
-
