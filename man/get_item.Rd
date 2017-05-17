@@ -11,10 +11,11 @@ get_item(id, ...)
 get_property(id, ...)
 }
 \arguments{
-\item{id}{the ID number of the item or property you're looking for. This can be in
+\item{id}{the ID number(s) of the item or property you're looking for. This can be in
 various formats; either a numeric value ("200"), the full name ("Q200") or
 even with an included namespace ("Property:P10") - the function will format
-it appropriately.}
+it appropriately. This function is vectorised and will happily accept
+multiple IDs.}
 
 \item{...}{further arguments to pass to httr's GET.}
 }
