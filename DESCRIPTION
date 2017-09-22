@@ -1,10 +1,10 @@
 Package: WikidataR
 Type: Package
 Title: API Client Library for 'Wikidata'
-Version: 1.3.0
-Date: 2017-05-17
+Version: 1.4.0
+Date: 2017-09-21
 Author: Oliver Keyes [aut, cre], Serena Signorelli [aut, cre],
-        Christian Graul [ctb]
+        Christian Graul [ctb], Mikhail Popov [ctb]
 Maintainer: Oliver Keyes <ironholds@gmail.com>
 Description: An API client for the Wikidata <http://wikidata.org/> store of
     semantic data.
@@ -16,6 +16,6 @@ Suggests: testthat, knitr, pageviews
 VignetteBuilder: knitr
 RoxygenNote: 6.0.1
 NeedsCompilation: no
-Packaged: 2017-05-17 08:44:10 UTC; ironholds
+Packaged: 2017-09-22 02:22:59 UTC; ironholds
 Repository: CRAN
-Date/Publication: 2017-05-17 14:15:24 UTC
+Date/Publication: 2017-09-22 05:43:08 UTC
