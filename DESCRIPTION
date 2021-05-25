@@ -1,21 +1,24 @@
 Package: WikidataR
 Type: Package
-Title: API Client Library for 'Wikidata'
-Version: 1.4.0
-Date: 2017-09-21
-Author: Oliver Keyes [aut, cre], Serena Signorelli [aut, cre],
-        Christian Graul [ctb], Mikhail Popov [ctb]
-Maintainer: Oliver Keyes <ironholds@gmail.com>
-Description: An API client for the Wikidata <http://wikidata.org/> store of
-    semantic data.
-BugReports: https://github.com/Ironholds/WikidataR/issues
-URL: https://github.com/Ironholds/WikidataR/issues
+Title: Read-Write API Client Library for 'Wikidata'
+Version: 2.1.5
+Date: 2021-05-10
+Author: Thomas Shafee [aut, cre], Oliver Keyes [aut, cre], Serena Signorelli [aut, cre],
+        Alex Lum [ctb], Christian Graul [ctb], Mikhail Popov [ctb]
+Maintainer: Thomas Shafee <T.Shafee@latrobe.edu.au>
+Description: An API client for the Wikidata <https://www.wikidata.org/wiki/Wikidata:Main_Page> store of
+             semantic data.
+BugReports: https://github.com/TS404/WikidataR/issues
+URL: https://github.com/TS404/WikidataR/issues
 License: MIT + file LICENSE
-Imports: httr, jsonlite, WikipediR (>= 1.4.0), utils
-Suggests: testthat, knitr, pageviews
+Imports: httr, jsonlite, WikipediR, WikidataQueryServiceR, tibble,
+        dplyr, stringr, Hmisc, pbapply, stats, readr, utils
+Suggests: markdown, testthat, tidyverse, knitr, pageviews
 VignetteBuilder: knitr
-RoxygenNote: 6.0.1
+RoxygenNote: 7.1.1
+Encoding: UTF-8
+Depends: R (>= 3.5.0)
 NeedsCompilation: no
-Packaged: 2017-09-22 02:22:59 UTC; ironholds
+Packaged: 2021-05-25 01:58:39 UTC; thoma
 Repository: CRAN
-Date/Publication: 2017-09-22 05:43:08 UTC
+Date/Publication: 2021-05-25 08:10:05 UTC

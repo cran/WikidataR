@@ -1,18 +1,3 @@
-clean_geo <- function(results){
-  do.call("rbind", lapply(results, function(item){
-    point <- unlist(strsplit(gsub(x = item$coord$value, pattern = "(Point\\(|\\))", replacement = ""),
-                             " "))
-    wd_id <- gsub(x = item$item$value, pattern = "http://www.wikidata.org/entity/",
-                  replacement = "", fixed = TRUE)
-    return(data.frame(item = wd_id,
-                      name = ifelse(item$name$value == wd_id, NA, item$name$value),
-                      latitutde = as.numeric(point[1]),
-                      longitude = as.numeric(point[2]),
-                      stringsAsFactors = FALSE))
-  
-  }))
-}
-
 #'@title Retrieve geographic information from Wikidata
 #'@description \code{get_geo_entity} retrieves the item ID, latitude
 #'and longitude of any object with geographic data associated with \emph{another}
@@ -29,7 +14,9 @@ clean_geo <- function(results){
 #'@param radius optionally, a radius (in kilometers) around \code{entity}
 #'to restrict the search to.
 #'
-#'@param ... further arguments to pass to httr's GET.
+#'@param limit the maximum number of results to return.
+#'
+#'@param \\dots further arguments to pass to httr's GET.
 #'
 #'@return a data.frame of 5 columns:
 #'\itemize{
@@ -45,22 +32,22 @@ clean_geo <- function(results){
 #'
 #'@examples
 #'# All entities
-#'sf_locations <- get_geo_entity("Q62")
+#'\donttest{sf_locations <- get_geo_entity("Q62")}
 #'
 #'# Entities with French, rather than English, names
-#'sf_locations <- get_geo_entity("Q62", language = "fr")
+#'\donttest{sf_locations <- get_geo_entity("Q62", language = "fr")}
 #'
 #'# Entities within 1km
-#'sf_close_locations <- get_geo_entity("Q62", radius = 1)
+#'\donttest{sf_close_locations <- get_geo_entity("Q62", radius = 1)}
 #'
 #'# Multiple entities
-#'multi_entity <- get_geo_entity(entity = c("Q62", "Q64"))
+#'\donttest{multi_entity <- get_geo_entity(entity = c("Q62", "Q64"))}
 #'
 #'@seealso \code{\link{get_geo_box}} for using a bounding box
 #'rather than an unrestricted search or simple radius.
 #'
 #'@export
-get_geo_entity <- function(entity, language = "en", radius = NULL, ...){
+get_geo_entity <- function(entity, language = "en", radius = NULL, limit=100, ...){
   
   entity <- check_input(entity, "Q")
   
@@ -72,7 +59,8 @@ get_geo_entity <- function(entity, language = "en", radius = NULL, ...){
                         ?item rdfs:label ?name
                       }
                     }
-                    ORDER BY ASC (?name)")
+                    ORDER BY ASC (?name)
+                    LIMIT ", limit)
   } else {
     query <- paste0("SELECT ?item ?name ?coord
                     WHERE {
@@ -87,7 +75,8 @@ get_geo_entity <- function(entity, language = "en", radius = NULL, ...){
                         bd:serviceParam wikibase:language \"", language, "\" .
                         ?item rdfs:label ?name
                       }
-                    } ORDER BY ASC (?name)")
+                    } ORDER BY ASC (?name)
+                    LIMIT ",limit)
   }
   
   if(length(query) > 1){
@@ -95,9 +84,10 @@ get_geo_entity <- function(entity, language = "en", radius = NULL, ...){
       output <- clean_geo(sparql_query(query, ...)$results$bindings)
       output$entity <- entity
       return(output)
-    }, query = query, entity = entity, ..., SIMPLIFY = FALSE)))
+    }, query = query, entity = entity, SIMPLIFY = FALSE, ...)))
   }
   output <- clean_geo(sparql_query(query)$results$bindings)
+  if(length(output)==0){warning("Query timeout. Possibly try again with lower 'limit='")}
   output$entity <- entity
   return(output)
 }
@@ -122,7 +112,7 @@ get_geo_entity <- function(entity, language = "en", radius = NULL, ...){
 #'@param language the two-letter language code to use for the name
 #'of the item. "en" by default.
 #'
-#'@param ... further arguments to pass to httr's GET.
+#'@param \\dots further arguments to pass to httr's GET.
 #'
 #'@return a data.frame of 5 columns:
 #'\itemize{
@@ -138,11 +128,11 @@ get_geo_entity <- function(entity, language = "en", radius = NULL, ...){
 #'
 #'@examples
 #'# Simple bounding box
-#'bruges_box <- WikidataR:::get_geo_box("Q12988", "NorthEast", "Q184287", "SouthWest")
+#'\donttest{bruges_box <- get_geo_box("Q12988", "NorthEast", "Q184287", "SouthWest")}
 #'
 #'# Custom language
-#'bruges_box_fr <- WikidataR:::get_geo_box("Q12988", "NorthEast", "Q184287", "SouthWest",
-#'                                         language = "fr")
+#'\donttest{bruges_box_fr <- get_geo_box("Q12988", "NorthEast", "Q184287", "SouthWest",
+#'                                         language = "fr")}
 #'
 #'@seealso \code{\link{get_geo_entity}} for using an unrestricted search or simple radius,
 #'rather than a bounding box.
@@ -179,4 +169,21 @@ get_geo_box <- function(first_city_code, first_corner, second_city_code, second_
   }
   output <- clean_geo(sparql_query(query)$results$bindings)
   return(output)
+}
+
+
+# Cleanup function
+clean_geo <- function(results){
+  do.call("rbind", lapply(results, function(item){
+    point <- unlist(strsplit(gsub(x = item$coord$value, pattern = "(Point\\(|\\))", replacement = ""),
+                             " "))
+    wd_id <- gsub(x = item$item$value, pattern = "http://www.wikidata.org/entity/",
+                  replacement = "", fixed = TRUE)
+    return(data.frame(item = wd_id,
+                      name = ifelse(item$name$value == wd_id, NA, item$name$value),
+                      latitutde = as.numeric(point[1]),
+                      longitude = as.numeric(point[2]),
+                      stringsAsFactors = FALSE))
+    
+  }))
 }

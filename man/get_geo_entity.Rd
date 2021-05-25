@@ -4,7 +4,7 @@
 \alias{get_geo_entity}
 \title{Retrieve geographic information from Wikidata}
 \usage{
-get_geo_entity(entity, language = "en", radius = NULL, ...)
+get_geo_entity(entity, language = "en", radius = NULL, limit = 100, ...)
 }
 \arguments{
 \item{entity}{a Wikidata item (\code{Q...}) or series of items, to check
@@ -17,7 +17,9 @@ anglocentric westerners.}
 \item{radius}{optionally, a radius (in kilometers) around \code{entity}
 to restrict the search to.}
 
-\item{...}{further arguments to pass to httr's GET.}
+\item{limit}{the maximum number of results to return.}
+
+\item{\\dots}{further arguments to pass to httr's GET.}
 }
 \value{
 a data.frame of 5 columns:
@@ -40,16 +42,16 @@ a city).
 }
 \examples{
 # All entities
-sf_locations <- get_geo_entity("Q62")
+\donttest{sf_locations <- get_geo_entity("Q62")}
 
 # Entities with French, rather than English, names
-sf_locations <- get_geo_entity("Q62", language = "fr")
+\donttest{sf_locations <- get_geo_entity("Q62", language = "fr")}
 
 # Entities within 1km
-sf_close_locations <- get_geo_entity("Q62", radius = 1)
+\donttest{sf_close_locations <- get_geo_entity("Q62", radius = 1)}
 
 # Multiple entities
-multi_entity <- get_geo_entity(entity = c("Q62", "Q64"))
+\donttest{multi_entity <- get_geo_entity(entity = c("Q62", "Q64"))}
 
 }
 \seealso{

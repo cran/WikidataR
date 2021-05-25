@@ -3,7 +3,6 @@
 \name{find_item}
 \alias{find_item}
 \alias{find_property}
-\alias{find_property}
 \title{Search for Wikidata items or properties that match a search term}
 \usage{
 find_item(search_term, language = "en", limit = 10, ...)
@@ -18,7 +17,7 @@ consist of an ISO language code. Set to "en" by default.}
 
 \item{limit}{the number of results to return; set to 10 by default.}
 
-\item{...}{further arguments to pass to httr's GET.}
+\item{\\dots}{further arguments to pass to httr's GET.}
 }
 \description{
 \code{find_item} and \code{find_property} allow you to retrieve a set

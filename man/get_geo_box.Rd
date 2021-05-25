@@ -4,8 +4,14 @@
 \alias{get_geo_box}
 \title{Get geographic entities based on a bounding box}
 \usage{
-get_geo_box(first_city_code, first_corner, second_city_code, second_corner,
-  language = "en", ...)
+get_geo_box(
+  first_city_code,
+  first_corner,
+  second_city_code,
+  second_corner,
+  language = "en",
+  ...
+)
 }
 \arguments{
 \item{first_city_code}{a Wikidata item, or series of items, to use for
@@ -23,7 +29,7 @@ to \code{city} (eg "NorthWest", "SouthEast").}
 \item{language}{the two-letter language code to use for the name
 of the item. "en" by default.}
 
-\item{...}{further arguments to pass to httr's GET.}
+\item{\\dots}{further arguments to pass to httr's GET.}
 }
 \value{
 a data.frame of 5 columns:
@@ -45,11 +51,11 @@ with geographic attributes (usually cities).
 }
 \examples{
 # Simple bounding box
-bruges_box <- WikidataR:::get_geo_box("Q12988", "NorthEast", "Q184287", "SouthWest")
+\donttest{bruges_box <- get_geo_box("Q12988", "NorthEast", "Q184287", "SouthWest")}
 
 # Custom language
-bruges_box_fr <- WikidataR:::get_geo_box("Q12988", "NorthEast", "Q184287", "SouthWest",
-                                        language = "fr")
+\donttest{bruges_box_fr <- get_geo_box("Q12988", "NorthEast", "Q184287", "SouthWest",
+                                        language = "fr")}
 
 }
 \seealso{

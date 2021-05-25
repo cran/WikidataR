@@ -3,7 +3,6 @@
 \name{get_item}
 \alias{get_item}
 \alias{get_property}
-\alias{get_property}
 \title{Retrieve specific Wikidata items or properties}
 \usage{
 get_item(id, ...)
@@ -17,7 +16,7 @@ even with an included namespace ("Property:P10") - the function will format
 it appropriately. This function is vectorised and will happily accept
 multiple IDs.}
 
-\item{...}{further arguments to pass to httr's GET.}
+\item{\\dots}{further arguments to pass to httr's GET.}
 }
 \description{
 \code{get_item} and \code{get_property} allow you to retrieve the data associated
