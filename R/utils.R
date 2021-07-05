@@ -31,7 +31,6 @@ wd_rand_query <- function(ns, limit, ...){
   output <- lapply(result, function(x){jsonlite::fromJSON(x$wikitext[[1]])})
   class(output) <- "wikidata"
   return(output)
-  
 }
 
 #Generic, direct access to Wikidata's search functionality.
@@ -321,7 +320,7 @@ as_sid <- function(x){
 #'@title Add quotations marks
 #'@description Add escaped quotation marks around strings that need them ready for submision to an API
 #'@param x a vector, data frame, or tibble of strings
-#'@param format either "tibble" to use plain quotation marks (default), or "api" to use '\%22'
+#'@param format either "tibble" / "csv" to use plain quotation marks (default), or "api" / "website" to use '\%22'
 #'@return tibble of items inside of escaped quotation marks
 #'unless they are already in escaped quotation marks, is a QID, (in which chase it is returned unchanged) 
 #'@examples
@@ -330,14 +329,14 @@ as_sid <- function(x){
 as_quot <- function(x,format="tibble"){
   if(is.null(x)){
     return(NULL)
-  }else if (format=="api"){
+  }else if (format=="api"|format=="website"){
     q_mark <- '%22'
   }else if (format=="tibble"|format=="csv"){
     q_mark <- '"'
   }
   as_quot_nest1 <- function(x){
     as_quot_nest2 <- function(x){
-      if(!(is.qid(x)|is.date(x)|is.quot(x)|is.na(x)|is.empty(x)))
+      if(!(is.qid(x)|is.quot(x)|is.date(x)|is.na(x)|is.empty(x)))
       {paste0(q_mark,x,q_mark)}
       else
       {x}
