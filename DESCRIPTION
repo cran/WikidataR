@@ -1,8 +1,8 @@
 Package: WikidataR
 Type: Package
 Title: Read-Write API Client Library for 'Wikidata'
-Version: 2.2.0
-Date: 2021-05-10
+Version: 2.3.1
+Date: 2021-07-09
 Author: Thomas Shafee [aut, cre], Oliver Keyes [aut, cre], Serena Signorelli [aut, cre],
         Alex Lum [ctb], Christian Graul [ctb], Mikhail Popov [ctb]
 Maintainer: Thomas Shafee <T.Shafee@latrobe.edu.au>
@@ -12,13 +12,13 @@ BugReports: https://github.com/TS404/WikidataR/issues
 URL: https://github.com/TS404/WikidataR/issues
 License: MIT + file LICENSE
 Imports: httr, jsonlite, WikipediR, WikidataQueryServiceR, tibble,
-        dplyr, stringr, Hmisc, pbapply, stats, readr, utils
+        dplyr, stringr, Hmisc, progress, pbapply, stats, readr, crayon,
+        utils
 Suggests: markdown, testthat, tidyverse, knitr, pageviews
-VignetteBuilder: knitr
 RoxygenNote: 7.1.1
 Encoding: UTF-8
 Depends: R (>= 3.5.0)
 NeedsCompilation: no
-Packaged: 2021-07-05 03:41:25 UTC; thoma
+Packaged: 2021-07-12 07:22:42 UTC; thoma
 Repository: CRAN
-Date/Publication: 2021-07-05 15:00:06 UTC
+Date/Publication: 2021-07-12 07:50:02 UTC
