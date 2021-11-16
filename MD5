@@ -1,4 +1,4 @@
-234c927b18a6a4bf49ec0284fbe3d206 *DESCRIPTION
+790e3888e447fa9a7cbcc4d63a96b73d *DESCRIPTION
 e327f9c01b333b34d5f1a7df9f173d5a *LICENSE
 edc3fe338aaa0a05a77de0419855160a *NAMESPACE
 cddf305289a1e1a3ef6ebf883c837099 *NEWS
@@ -8,13 +8,13 @@ b5dd335b1351459def84bbee4a4c7fbf *R/disambiguators.R
 eda7a783d092d2fe5ddef012b2f97aa7 *R/geo.R
 edb3a4badb64a5e8090f9317b0df9950 *R/gets.R
 3a59c9490177b80be8f70bd0d885aed1 *R/prints.R
-627cc33b4cc3c1b795b66fd939182430 *R/queries.R
+c926dcca2171eac71df0ce33805b6c32 *R/queries.R
 0afb790db53229f7c7ced84e8c1a6660 *R/schol.R
 2e515ebb78ab420087651f1d336c1692 *R/sysdata.rda
-65f9c3cceca61c9e8bf633712ab5da76 *R/utils.R
-e8a56ef7525ae95b6e3f22eb2b3304a3 *R/writes.R
+6e5b17a1dbb375f035e75f017ef3de83 *R/utils.R
+506a63c3a3139139b13846f2b8088103 *R/writes.R
 bca3ae5e8073b1446ef1e5a094793c79 *R/zzz.R
-193041308b278652d644ae356dadb588 *README.md
+d0767f261839cda82c31e07ef225b78f *README.md
 7b80f30bc55674afdc5d922f57c5beec *inst/extdata/WD.globalvar.RDS
 6860eea8ad3721e4908e2b502b3c3377 *man/WD.globalvar.Rd
 4a2caab720ab4e94b699fe3a94df9a10 *man/WikidataR.Rd
